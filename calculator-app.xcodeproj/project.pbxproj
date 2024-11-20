@@ -8,8 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		98902C802CEDF06C00602E7F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 98902C7F2CEDF06C00602E7F /* SnapKit */; };
-		98902C822CEDF06C00602E7F /* SnapKit-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 98902C812CEDF06C00602E7F /* SnapKit-Dynamic */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		98902C942CEE330200602E7F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		98902C662CEDECEE00602E7F /* calculator-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "calculator-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +54,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				98902C802CEDF06C00602E7F /* SnapKit in Frameworks */,
-				98902C822CEDF06C00602E7F /* SnapKit-Dynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,6 +86,7 @@
 				98902C622CEDECEE00602E7F /* Sources */,
 				98902C632CEDECEE00602E7F /* Frameworks */,
 				98902C642CEDECEE00602E7F /* Resources */,
+				98902C942CEE330200602E7F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -86,7 +98,6 @@
 			name = "calculator-app";
 			packageProductDependencies = (
 				98902C7F2CEDF06C00602E7F /* SnapKit */,
-				98902C812CEDF06C00602E7F /* SnapKit-Dynamic */,
 			);
 			productName = "calculator-app";
 			productReference = 98902C662CEDECEE00602E7F /* calculator-app.app */;
@@ -362,11 +373,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 98902C7E2CEDF06C00602E7F /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
-		};
-		98902C812CEDF06C00602E7F /* SnapKit-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 98902C7E2CEDF06C00602E7F /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = "SnapKit-Dynamic";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
