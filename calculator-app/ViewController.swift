@@ -6,8 +6,11 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
+    
+    let numberLabel = UILabel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
