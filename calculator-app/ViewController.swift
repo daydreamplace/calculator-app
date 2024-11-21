@@ -11,7 +11,10 @@ import SnapKit
 class ViewController: UIViewController {
     
     let numberLabel = UILabel()
-
+    var horizontalStackView: UIStackView!
+    var button = UIButton()
+    var calculatorButtonLabels = ["7", "8", "9", "+"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
