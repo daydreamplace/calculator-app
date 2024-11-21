@@ -70,7 +70,6 @@ class ViewController: UIViewController {
         view.addSubview(verticalStackView)
     }
     
-    
     private func setUpConstraints() {
         numberLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(30)
@@ -79,8 +78,10 @@ class ViewController: UIViewController {
         }
         
         verticalStackView.snp.makeConstraints {
+            $0.width.equalTo(350)
+            $0.centerX.equalToSuperview()
             $0.leading.trailing.equalToSuperview().inset(30)
-            $0.top.equalTo(numberLabel.snp.bottom).offset(50)
+            $0.top.equalTo(numberLabel.snp.bottom).offset(60)
             $0.bottom.equalToSuperview().inset(30)
         }
     }
