@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     let numberLabel = UILabel()
     var horizontalStackView: UIStackView!
+    var verticalStackView: UIStackView!
     var buttons: [UIButton] = []
     var calculatorButtonLabels = ["7", "8", "9", "+"]
     
