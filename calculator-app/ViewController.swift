@@ -14,13 +14,19 @@ class ViewController: UIViewController {
     var horizontalStackView: UIStackView!
     var verticalStackView: UIStackView!
     var buttons: [UIButton] = []
-    var calculatorButtonLabels = ["7", "8", "9", "+"]
+    var calculatorButtonLabels = [
+        ["7", "8", "9", "+"],
+        ["4", "5", "6", "-"],
+        ["1", "2", "3", "*"],
+        ["AC", "0", "=", "/"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
         setUpNumberLabel()
         setUpButtons()
+        setUpVerticalStackView()
         setUpConstraints()
     }
     
@@ -53,6 +59,16 @@ class ViewController: UIViewController {
         view.addSubview(horizontalStackView)
     }
     
+    private func setUpVerticalStackView() {
+        verticalStackView = UIStackView(arrangedSubviews: [numberLabel, horizontalStackView])
+        verticalStackView.axis = .vertical
+        verticalStackView.spacing = 10
+        verticalStackView.distribution = .fillEqually
+        verticalStackView.backgroundColor = .black
+        
+        view.addSubview(verticalStackView)
+    }
+    
     private func setUpConstraints() {
         numberLabel.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview().inset(30)
@@ -64,6 +80,12 @@ class ViewController: UIViewController {
             $0.leading.trailing.equalToSuperview().inset(30)
             $0.top.equalTo(numberLabel.snp.bottom).offset(50)
             $0.height.equalTo(80)
+        }
+        
+        verticalStackView.snp.makeConstraints {
+            $0.width.equalTo(350)
+            $0.top.equalTo(numberLabel.snp.bottom).offset(60)
+            $0.centerX.equalToSuperview()
         }
     }
     
