@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setUpView()
         setUpNumberLabel()
+        setUpButtons()
         setUpConstraints()
     }
     
@@ -44,12 +45,11 @@ class ViewController: UIViewController {
             button.setTitleColor(.white, for: .normal)
             button.layer.cornerRadius = 40
             
-            button.snp.makeConstraints { make in
-                make.height.width.equalTo(80)
-            }
-            
             buttons.append(button)
         }
+        
+        horizontalStackView = makeHorizontalStackView(buttons)
+        view.addSubview(horizontalStackView)
     }
     
     private func setUpConstraints() {
@@ -58,9 +58,21 @@ class ViewController: UIViewController {
             $0.top.equalToSuperview().offset(200)
             $0.height.equalTo(100)
         }
+        
+        horizontalStackView.snp.makeConstraints {
+            $0.leading.trailing.equalToSuperview().inset(30)
+            $0.top.equalTo(numberLabel.snp.bottom).offset(50)
+            $0.height.equalTo(80)
+        }
     }
     
-//    private func makeHorizontalStackView(_ views: [UIView]) -> UIStackView {
-//    }
+    private func makeHorizontalStackView(_ views: [UIView]) -> UIStackView {
+        let stackView = UIStackView(arrangedSubviews: views)
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        stackView.backgroundColor = .black
+        return stackView
+    }
 }
 
