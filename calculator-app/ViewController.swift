@@ -11,9 +11,14 @@ import SnapKit
 class ViewController: UIViewController {
     
     let numberLabel = UILabel()
-    var horizontalStackView: UIStackView!
+    var verticalStackView: UIStackView!
     var buttons: [UIButton] = []
-    var calculatorButtonLabels = ["7", "8", "9", "+"]
+    var calculatorButtonLabels = [
+        ["7", "8", "9", "+"],
+        ["4", "5", "6", "-"],
+        ["1", "2", "3", "*"],
+        ["AC", "0", "=", "/"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,19 +42,36 @@ class ViewController: UIViewController {
     }
     
     private func setUpButtons() {
-        for label in calculatorButtonLabels {
-            let button = UIButton(type: .system)
-            button.setTitle(label, for: .normal)
-            button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-            button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-            button.setTitleColor(.white, for: .normal)
-            button.layer.cornerRadius = 40
-            
-            buttons.append(button)
+        var rowStackViews: [UIStackView] = []
+        
+        for row in calculatorButtonLabels {
+            var rowButtons: [UIButton] = []
+            for label in row {
+                let button = UIButton(type: .system)
+                button.setTitle(label, for: .normal)
+                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+                button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+                button.setTitleColor(.white, for: .normal)
+                button.layer.cornerRadius = 40
+                button.snp.makeConstraints { make in
+                    make.width.equalTo(80)
+                    make.height.equalTo(button.snp.width)
+                }
+                
+                rowButtons.append(button)
+                buttons.append(button)
+            }
+            let rowStackView = makeHorizontalStackView(rowButtons)
+            rowStackViews.append(rowStackView)
         }
         
-        horizontalStackView = makeHorizontalStackView(buttons)
-        view.addSubview(horizontalStackView)
+        verticalStackView = UIStackView(arrangedSubviews: rowStackViews)
+        verticalStackView.axis = .vertical
+        verticalStackView.spacing = 10
+        verticalStackView.distribution = .fillEqually
+        verticalStackView.backgroundColor = .black
+        
+        view.addSubview(verticalStackView)
     }
     
     private func setUpConstraints() {
@@ -59,10 +81,10 @@ class ViewController: UIViewController {
             $0.height.equalTo(100)
         }
         
-        horizontalStackView.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(30)
-            $0.top.equalTo(numberLabel.snp.bottom).offset(50)
-            $0.height.equalTo(80)
+        verticalStackView.snp.makeConstraints {
+            $0.width.equalTo(350)
+            $0.centerX.equalToSuperview()
+            $0.top.equalTo(numberLabel.snp.bottom).offset(60)
         }
     }
     
@@ -72,7 +94,9 @@ class ViewController: UIViewController {
         stackView.spacing = 10
         stackView.distribution = .fillEqually
         stackView.backgroundColor = .black
+        stackView.snp.makeConstraints { make in
+            make.height.equalTo(80)
+        }
         return stackView
     }
 }
-
