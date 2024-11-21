@@ -53,6 +53,10 @@ class ViewController: UIViewController {
                 button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
                 button.setTitleColor(.white, for: .normal)
                 button.layer.cornerRadius = 40
+                button.snp.makeConstraints { make in
+                    make.width.equalTo(80)
+                    make.height.equalTo(button.snp.width)
+                }
                 
                 rowButtons.append(button)
                 buttons.append(button)
@@ -80,9 +84,7 @@ class ViewController: UIViewController {
         verticalStackView.snp.makeConstraints {
             $0.width.equalTo(350)
             $0.centerX.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(30)
             $0.top.equalTo(numberLabel.snp.bottom).offset(60)
-            $0.bottom.equalToSuperview().inset(30)
         }
     }
     
@@ -92,6 +94,9 @@ class ViewController: UIViewController {
         stackView.spacing = 10
         stackView.distribution = .fillEqually
         stackView.backgroundColor = .black
+        stackView.snp.makeConstraints { make in
+            make.height.equalTo(80)
+        }
         return stackView
     }
 }
