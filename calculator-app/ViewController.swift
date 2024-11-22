@@ -10,6 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController {
     
+    // properies
     let numberLabel = UILabel()
     var verticalStackView: UIStackView!
     var buttons: [UIButton] = []
@@ -20,6 +21,7 @@ class ViewController: UIViewController {
         ["AC", "0", "=", "/"]
     ]
     
+    // lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpView()
@@ -28,6 +30,7 @@ class ViewController: UIViewController {
         setUpConstraints()
     }
     
+    // setup methods
     private func setUpView() {
         view.backgroundColor = .black
     }
@@ -79,6 +82,7 @@ class ViewController: UIViewController {
         }
     }
     
+    // helper methods
     private func makeHorizontalStackView(_ views: [UIView]) -> UIStackView {
         let stackView = UIStackView(arrangedSubviews: views)
         stackView.axis = .horizontal
