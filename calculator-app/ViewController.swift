@@ -10,7 +10,7 @@ import SnapKit
 
 class ViewController: UIViewController {
     
-    // properies
+    // properties
     let numberLabel = UILabel()
     var verticalStackView: UIStackView!
     var buttons: [UIButton] = []
