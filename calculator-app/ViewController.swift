@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         for row in calculatorButtonLabels {
             var rowButtons: [UIButton] = []
             for label in row {
-                let button = makeButton(titleValue: label, action: nil, backgroundColor: UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0))
+                let button = makeButton(titleValue: label, action: nil, backgroundColor: isOperator(label) ? .orange : UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0))
                 
                 rowButtons.append(button)
                 buttons.append(button)
@@ -95,7 +95,7 @@ class ViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle(titleValue, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-        button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
+        button.backgroundColor = backgroundColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 40
         button.snp.makeConstraints { make in
@@ -105,4 +105,7 @@ class ViewController: UIViewController {
         return button
     }
     
+    private func isOperator(_ label: String) -> Bool {
+        return ["+", "-", "*", "/", "AC", "="].contains(label)
+    }
 }
