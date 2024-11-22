@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     private func setUpNumberLabel() {
         numberLabel.textColor = .white
-        numberLabel.text = "12345"
+        numberLabel.text = "0"
         numberLabel.textAlignment = .right
         numberLabel.font = UIFont.boldSystemFont(ofSize: 60)
         
