@@ -47,16 +47,7 @@ class ViewController: UIViewController {
         for row in calculatorButtonLabels {
             var rowButtons: [UIButton] = []
             for label in row {
-                let button = UIButton(type: .system)
-                button.setTitle(label, for: .normal)
-                button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
-                button.backgroundColor = UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0)
-                button.setTitleColor(.white, for: .normal)
-                button.layer.cornerRadius = 40
-                button.snp.makeConstraints { make in
-                    make.width.equalTo(80)
-                    make.height.equalTo(button.snp.width)
-                }
+                let button = makeButton(titleValue: label, action: nil, backgroundColor: isOperator(label) ? .orange : UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0))
                 
                 rowButtons.append(button)
                 buttons.append(button)
@@ -98,5 +89,23 @@ class ViewController: UIViewController {
             make.height.equalTo(80)
         }
         return stackView
+    }
+    
+    private func makeButton(titleValue: String, action: Selector?, backgroundColor: UIColor) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(titleValue, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 30)
+        button.backgroundColor = backgroundColor
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 40
+        button.snp.makeConstraints { make in
+            make.width.equalTo(80)
+            make.height.equalTo(button.snp.width)
+        }
+        return button
+    }
+    
+    private func isOperator(_ label: String) -> Bool {
+        return ["+", "-", "*", "/", "AC", "="].contains(label)
     }
 }
