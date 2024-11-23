@@ -124,6 +124,8 @@ class ViewController: UIViewController {
             }
         } else {
             if isOperator(buttonTitle), let lastChar = numberLabel.text?.last, isOperator(String(lastChar)) {
+                numberLabel.text = String(numberLabel.text!.dropLast())
+                numberLabel.text?.append(buttonTitle)
                 return
             }
             if numberLabel.text == "0" {
