@@ -90,6 +90,7 @@ class ViewController: UIViewController {
         stackView.snp.makeConstraints { make in
             make.height.equalTo(80)
         }
+        
         return stackView
     }
     
@@ -100,7 +101,6 @@ class ViewController: UIViewController {
         button.backgroundColor = backgroundColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 40
-        
         if let action = action {
             button.addTarget(self, action: action, for: .touchUpInside)
         }
