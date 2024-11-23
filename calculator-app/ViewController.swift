@@ -119,17 +119,37 @@ class ViewController: UIViewController {
         if buttonTitle == "AC" {
             numberLabel.text = "0"
         } else if buttonTitle == "=" {
-            // TODO: Add calculation logic
+            if let expression = numberLabel.text, let result = calculate(expression: expression) {
+                numberLabel.text = String(result)
+            }
         } else {
+            if isOperator(buttonTitle), let lastChar = numberLabel.text?.last, isOperator(String(lastChar)) {
+                numberLabel.text = String(numberLabel.text!.dropLast())
+                numberLabel.text?.append(buttonTitle)
+                return
+            }
             if numberLabel.text == "0" {
                 numberLabel.text = buttonTitle
             } else {
-                numberLabel.text?.append(buttonTitle)
-                
-                if let text = numberLabel.text, text.hasPrefix("0") && text.count > 1 {
-                    numberLabel.text = String(text.dropFirst())
+                if numberLabel.text == "0" {
+                    numberLabel.text = buttonTitle
+                } else {
+                    numberLabel.text?.append(buttonTitle)
+                    
+                    if let text = numberLabel.text, text.hasPrefix("0") && text.count > 1 {
+                        numberLabel.text = String(text.dropFirst())
+                    }
                 }
             }
+        }
+    }
+    
+    func calculate(expression: String) -> Int? {
+        let expression = NSExpression(format: expression)
+        if let result = expression.expressionValue(with: nil, context: nil) as? Int {
+            return result
+        } else {
+            return nil
         }
     }
 }
