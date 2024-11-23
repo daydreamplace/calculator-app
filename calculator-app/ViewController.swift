@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     private func setUpNumberLabel() {
         numberLabel.textColor = .white
-        numberLabel.text = "12345"
+        numberLabel.text = "0"
         numberLabel.textAlignment = .right
         numberLabel.font = UIFont.boldSystemFont(ofSize: 60)
         
@@ -50,7 +50,7 @@ class ViewController: UIViewController {
         for row in calculatorButtonLabels {
             var rowButtons: [UIButton] = []
             for label in row {
-                let button = makeButton(titleValue: label, action: nil, backgroundColor: isOperator(label) ? .orange : UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0))
+                let button = makeButton(titleValue: label, action: #selector(buttonTapped(_:)), backgroundColor: isOperator(label) ? .orange : UIColor(red: 58/255, green: 58/255, blue: 58/255, alpha: 1.0))
                 
                 rowButtons.append(button)
                 buttons.append(button)
@@ -100,10 +100,36 @@ class ViewController: UIViewController {
         button.backgroundColor = backgroundColor
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 40
+        
+        if let action = action {
+            button.addTarget(self, action: action, for: .touchUpInside)
+        }
+        
         return button
     }
     
     private func isOperator(_ label: String) -> Bool {
         return ["+", "-", "*", "/", "AC", "="].contains(label)
+    }
+    
+    // action methods
+    @objc private func buttonTapped(_ sender: UIButton) {
+        guard let buttonTitle = sender.currentTitle else { return }
+        
+        if buttonTitle == "AC" {
+            numberLabel.text = "0"
+        } else if buttonTitle == "=" {
+            // TODO: Add calculation logic
+        } else {
+            if numberLabel.text == "0" {
+                numberLabel.text = buttonTitle
+            } else {
+                numberLabel.text?.append(buttonTitle)
+                
+                if let text = numberLabel.text, text.hasPrefix("0") && text.count > 1 {
+                    numberLabel.text = String(text.dropFirst())
+                }
+            }
+        }
     }
 }
