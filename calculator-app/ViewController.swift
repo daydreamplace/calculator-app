@@ -125,6 +125,10 @@ class ViewController: UIViewController {
                 numberLabel.text = buttonTitle
             } else {
                 numberLabel.text?.append(buttonTitle)
+                
+                if let text = numberLabel.text, text.hasPrefix("0") && text.count > 1 {
+                    numberLabel.text = String(text.dropFirst())
+                }
             }
         }
     }
