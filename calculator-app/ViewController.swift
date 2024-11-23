@@ -123,6 +123,9 @@ class ViewController: UIViewController {
                 numberLabel.text = String(result)
             }
         } else {
+            if isOperator(buttonTitle), let lastChar = numberLabel.text?.last, isOperator(String(lastChar)) {
+                return
+            }
             if numberLabel.text == "0" {
                 numberLabel.text = buttonTitle
             } else {
